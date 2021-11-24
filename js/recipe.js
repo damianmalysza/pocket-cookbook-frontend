@@ -19,4 +19,8 @@ class Recipe {
     this.directions = params.attributes.directions
   }
 
+  get totalTime() {
+    return this.preptime + this.cooktime
+  }
+
 }
