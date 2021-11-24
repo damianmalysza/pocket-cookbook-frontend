@@ -8,10 +8,31 @@
   <title>Pocket Cookbook</title>
 </head>
 <body>
-  <div class="container-fluid text-center">
-    <h1 class="display-3">Pocket Cookbook</h1>
-    <div class="container-fluid main-container">
-
+  <div class="container-fluid">
+    <h1 class="display-3 text-center">Pocket Cookbook</h1>
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-breakfast-tab" data-toggle="tab" href="#nav-breakfast" role="tab" aria-controls="nav-breakfast" aria-selected="true">Breakfast</a>
+        <a class="nav-item nav-link" id="nav-soup-tab" data-toggle="tab" href="#nav-soup" role="tab" aria-controls="nav-soup" aria-selected="false">Soup</a>
+        <a class="nav-item nav-link" id="nav-sauce-tab" data-toggle="tab" href="#nav-sauce" role="tab" aria-controls="nav-sauce" aria-selected="false">Sauce</a>
+        <a class="nav-item nav-link" id="nav-appetizer-tab" data-toggle="tab" href="#nav-appetizer" role="tab" aria-controls="nav-appetizer" aria-selected="false">Appetizer</a>
+        <a class="nav-item nav-link" id="nav-entree-tab" data-toggle="tab" href="#nav-entree" role="tab" aria-controls="nav-entree" aria-selected="false">Entree</a>
+        <a class="nav-item nav-link" id="nav-dessert-tab" data-toggle="tab" href="#nav-dessert" role="tab" aria-controls="nav-dessert" aria-selected="false">Dessert</a>
+        <a class="nav-item nav-link" id="nav-beverage-tab" data-toggle="tab" href="#nav-beverage" role="tab" aria-controls="nav-beverage" aria-selected="false">Beverage</a>
+        <a class="nav-item nav-link" id="nav-misc-tab" data-toggle="tab" href="#nav-misc" role="tab" aria-controls="nav-misc" aria-selected="false">Misc.</a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-breakfast" role="tabpanel" aria-labelledby="nav-breakfast-tab">breakfast</div>
+      <div class="tab-pane fade" id="nav-soup" role="tabpanel" aria-labelledby="nav-soup-tab">soup </div>
+      <div class="tab-pane fade" id="nav-sauce" role="tabpanel" aria-labelledby="nav-sauce-tab">sauce</div>
+      <div class="tab-pane fade" id="nav-appetizer" role="tabpanel" aria-labelledby="nav-appetizer-tab">appetizer </div>
+      <div class="tab-pane fade" id="nav-entree" role="tabpanel" aria-labelledby="nav-entree-tab">entree </div>
+      <div class="tab-pane fade" id="nav-dessert" role="tabpanel" aria-labelledby="nav-dessert-tab">dessert </div>
+      <div class="tab-pane fade" id="nav-beverage" role="tabpanel" aria-labelledby="nav-beverage-tab">beverage </div>
+      <div class="tab-pane fade" id="nav-misc" role="tabpanel" aria-labelledby="nav-misc-tab"> Misc.</div>
+    </div>
+</div>
 
     </div>
   </div>
@@ -19,6 +40,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="index.js" /></script>
+  <script src="js/recipe.js" /></script>
+  <script src="js/index.js" /></script>
 </body>
 </html>
