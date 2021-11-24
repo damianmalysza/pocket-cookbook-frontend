@@ -1,6 +1,7 @@
 const recipeIndexUrl = "http://localhost:3000/recipes"
 const mainContainer = document.querySelector(".main-container")
 const recipes = []
+const categories = []
 
 document.addEventListener("DOMContentLoaded",() => {
   fetchRecipes()
@@ -12,7 +13,11 @@ function fetchRecipes(){
   .then(response => response.json())
   .then(json => {
     json.data.forEach(recipe => {
-      recipes.push(new Recipe(recipe))
+      let newRecipe = new Recipe(recipe)
+      recipes.push(newRecipe)
+      if (!categories.includes(newRecipe.category)) {
+        categories.push(newRecipe.category)
+      }
     })
   })
 }
