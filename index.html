@@ -8,8 +8,7 @@
   <title>Pocket Cookbook</title>
 </head>
 <body>
-  <div class="container-fluid">
-    <h1 class="display-3 text-center">Pocket Cookbook</h1>
+  <div class="container-fluid mt-3">
     <nav>
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a class="nav-item nav-link active" id="nav-breakfast-tab" data-toggle="tab" href="#nav-breakfast" role="tab" aria-controls="nav-breakfast" aria-selected="true">Breakfast</a>
@@ -23,7 +22,22 @@
       </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="nav-breakfast" role="tabpanel" aria-labelledby="nav-breakfast-tab">breakfast</div>
+      <div class="tab-pane fade show active" id="nav-breakfast" role="tabpanel" aria-labelledby="nav-breakfast-tab">
+        <!-- Cards need to be inside of the row div -->
+        <div class="row">
+          <!-- Example of one card for a recipe -->
+          <div class="col-sm-3">
+            <div class="card mt-3">
+              <div class="card-body text-center">
+                <h5 class="card-title">Recipe Name</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Prep Time: | Cook Time: </h6>
+                <p class="card-text">12 Servings</p>
+                <button class="btn btn-primary">View Recipe</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="tab-pane fade" id="nav-soup" role="tabpanel" aria-labelledby="nav-soup-tab">soup </div>
       <div class="tab-pane fade" id="nav-sauce" role="tabpanel" aria-labelledby="nav-sauce-tab">sauce</div>
       <div class="tab-pane fade" id="nav-appetizer" role="tabpanel" aria-labelledby="nav-appetizer-tab">appetizer </div>
