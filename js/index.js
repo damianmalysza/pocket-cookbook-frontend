@@ -1,11 +1,10 @@
 const recipeIndexUrl = "http://localhost:3000/recipes"
 const mainContainer = document.querySelector(".main-container")
 const recipes = []
-const categories = []
+
 
 document.addEventListener("DOMContentLoaded",() => {
   fetchRecipes()
-
 })
 
 function fetchRecipes(){
@@ -15,9 +14,6 @@ function fetchRecipes(){
     json.data.forEach(recipe => {
       let newRecipe = new Recipe(recipe)
       recipes.push(newRecipe)
-      if (!categories.includes(newRecipe.category)) {
-        categories.push(newRecipe.category)
-      }
     })
   })
 }
@@ -54,4 +50,8 @@ function createRecipeCard(recipe) {
   cardBody.append(cardTitle,cardSubTitle,cardText,button)
 
   return cardOuterShell
+}
+
+function selectCategoryTab(category){
+
 }
