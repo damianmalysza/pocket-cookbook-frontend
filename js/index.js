@@ -1,10 +1,13 @@
 const recipeIndexUrl = "http://localhost:3000/recipes"
+const categoriesIndexUrl = "http://localhost:3000/categories"
 const mainContainer = document.querySelector(".main-container")
 const recipes = []
+const categories = []
 const tabContent = document.querySelector('#nav-tabcontent')
 
 document.addEventListener("DOMContentLoaded",() => {
   fetchRecipes()
+  fetchCategories()
   let navItems = document.querySelectorAll(".nav-link")
   navItems.forEach(item => {
     item.addEventListener("click", displayCards)
@@ -20,9 +23,16 @@ function fetchRecipes(){
   .then(response => response.json())
   .then(json => {
     json.data.forEach(recipe => {
-      let newRecipe = new Recipe(recipe)
-      recipes.push(newRecipe)
+      recipes.push(new Recipe(recipe))
     })
+  })
+}
+
+function fetchCategories(){
+  fetch(categoriesIndexUrl)
+  .then(response => response.json())
+  .then(json => {
+    json.forEach(category => categories.push(category))
   })
 }
 
