@@ -9,8 +9,6 @@ const tabContent = document.querySelector('#nav-tabcontent')
 document.addEventListener("DOMContentLoaded",() => {
   fetchRecipes()
   fetchAndCreateCategories()
-  // display cards for selected category
-  // add event listeners for view recipe buttons
   // display recipe details for clicked on recipe
 })
 
@@ -76,6 +74,7 @@ function createRecipeCard(recipe) {
   button.className = 'btn btn-primary'
   button.id = recipe.recipe_id
   button.innerText = 'View Recipe'
+  button.addEventListener('click', displayRecipe)
   
   cardBody.append(cardTitle,cardSubTitle,cardText,button)
   
@@ -93,5 +92,8 @@ function displayCards(event){
   filteredRecipes.forEach(recipe => {
     tabContent.appendChild(createRecipeCard(recipe))
   })
-  
+}
+
+function displayRecipe(event){
+  // add logic to display recipe info here
 }
