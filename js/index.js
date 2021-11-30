@@ -29,7 +29,10 @@ function createCategoryTabs(categories) {
     tab.setAttribute('category', `${category}`)
     tab.href = `#nav-${category}`
     tab.innerText = `${category}`
-    tab.addEventListener("click", displayCards)
+    tab.addEventListener("click", event => {
+      let selectedCategory = event.target.attributes['category'].value
+      displayCards(selectedCategory)
+    })
     
     navBar.appendChild(tab)
   })
@@ -124,7 +127,9 @@ function createRecipeDisplay(recipe) {
   let backButton = document.createElement('button')
   backButton.className = 'btn btn-primary col h-50 w-50'
   backButton.setAttribute('category',`${recipe.category}`)
-  backButton.addEventListener('click',displayCards)
+  backButton.addEventListener('click',event => {
+    let selectedCategory = event.target.attributes['category'].value
+    displayCards(selectedCategory)})
   backButton.innerText = "Back"
 
   let btnGroup = document.createElement('div')
@@ -155,9 +160,9 @@ function createRecipeDisplay(recipe) {
   return contentOuterShell
 }
 
-function displayCards(event){
+function displayCards(selectedCategory){
   removeCurrentDisplay()
-  const selectedCategory = event.target.attributes['category'].value
+  
 
   const filteredRecipes = recipes.filter(recipe => recipe.category === selectedCategory)
 
@@ -184,6 +189,7 @@ function editRecipe(recipe){
 }
 
 function deleteRecipe(recipe){
+  let category = recipe.category
   let deleteUrl = `http://localhost:3000/recipes/${recipe.recipe_id}`
   fetch(deleteUrl,{method: 'delete'})
   .then(() => {
