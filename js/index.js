@@ -21,6 +21,17 @@ function fetchRecipesAndCreateCategories(){
   })
 }
 
+function refreshRecipes() {
+  recipes.splice(0,recipes.length)
+  fetch(recipeIndexUrl)
+  .then(response => response.json())
+  .then(json => {
+    json.data.forEach(recipe => {
+      recipes.push(new Recipe(recipe))
+    })
+  }) 
+}
+
 function createCategoryTabs(categories) {
   categories.forEach(category => {
     let tab = document.createElement('a')
@@ -84,6 +95,7 @@ function createRecipeCard(recipe) {
 }
 
 function createRecipeDisplay(recipe) {
+  // debugger
   let contentOuterShell = document.createElement('div')
   contentOuterShell.className = 'card w-100'
 
@@ -160,9 +172,26 @@ function createRecipeDisplay(recipe) {
   return contentOuterShell
 }
 
+async function fetchRecipeIngredients(recipe){
+  let url = recipeIndexUrl + `/${recipe.recipe_id}`
+  await fetch(url)
+  .then(response => response.json())
+  .then(json => {
+    recipe.ingredients = json.data.attributes.ingredients
+  })
+}
+
+async function fetchRecipeDirections(recipe){
+  let url = recipeIndexUrl + `/${recipe.recipe_id}`
+  await fetch(url)
+  .then(response => response.json())
+  .then(json => {
+    recipe.directions = json.data.attributes.directions
+  })
+}
+
 function displayCards(selectedCategory){
   removeCurrentDisplay()
-  
 
   const filteredRecipes = recipes.filter(recipe => recipe.category === selectedCategory)
 
@@ -171,10 +200,12 @@ function displayCards(selectedCategory){
   })
 }
 
-function displayRecipe(event){
+async function displayRecipe(event){
   removeCurrentDisplay()
   const selectedRecipeId = event.target.attributes['id'].value
   const selectedRecipe = recipes.find(recipe => recipe.recipe_id == selectedRecipeId)
+  if (!selectedRecipe.ingredients) {await fetchRecipeIngredients(selectedRecipe)}
+  if (!selectedRecipe.directions) {await fetchRecipeDirections(selectedRecipe)}
   tabContent.appendChild(createRecipeDisplay(selectedRecipe))
 }
 
