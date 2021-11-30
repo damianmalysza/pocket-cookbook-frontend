@@ -184,5 +184,9 @@ function editRecipe(recipe){
 }
 
 function deleteRecipe(recipe){
-  debugger
+  let deleteUrl = `http://localhost:3000/recipes/${recipe.recipe_id}`
+  fetch(deleteUrl,{method: 'delete'})
+  .then(() => {
+    location.reload()
+  })
 }
