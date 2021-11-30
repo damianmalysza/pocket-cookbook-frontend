@@ -117,12 +117,39 @@ function createRecipeDisplay(recipe) {
   })
   contentBody.appendChild(directionsGroup)
 
+  let buttonRow = document.createElement('div')
+  buttonRow.className = 'row mt-3 justify-content-md-center'
+  contentBody.appendChild(buttonRow)
+  
   let backButton = document.createElement('button')
-  backButton.className = 'btn btn-primary mt-3'
+  backButton.className = 'btn btn-primary col h-50 w-50'
   backButton.setAttribute('category',`${recipe.category}`)
   backButton.addEventListener('click',displayCards)
   backButton.innerText = "Back"
-  contentBody.appendChild(backButton)
+
+  let btnGroup = document.createElement('div')
+  btnGroup.className = 'btn-group col'
+  btnGroup.setAttribute('role','group')
+
+  let delButton = document.createElement('button')
+  delButton.className = 'btn btn-danger'
+  delButton.addEventListener('click',deleteRecipe.bind(event,recipe))
+  delButton.innerText = "Delete Recipe"
+  btnGroup.appendChild(delButton)
+
+  let editButton = document.createElement('button')
+  editButton.className = 'btn btn-secondary'
+  editButton.addEventListener('click',editRecipe.bind(event,recipe))
+  editButton.innerText = "Edit Recipe"
+  btnGroup.appendChild(editButton)
+
+  buttonRow.appendChild(backButton)
+  for (let i=0;i<5;i++){
+    let div = document.createElement('div')
+    div.className = 'col'
+    buttonRow.appendChild(div)
+  }
+  buttonRow.appendChild(btnGroup)
 
   contentOuterShell.appendChild(contentBody)
   return contentOuterShell
@@ -150,4 +177,12 @@ function removeCurrentDisplay(){
   while (tabContent.firstChild) {
     tabContent.removeChild(tabContent.firstChild)
   }
+}
+
+function editRecipe(recipe){
+  debugger
+}
+
+function deleteRecipe(recipe){
+  debugger
 }
