@@ -81,6 +81,54 @@ function createRecipeCard(recipe) {
   return cardOuterShell
 }
 
+function createRecipeDisplay(recipe) {
+  let contentOuterShell = document.createElement('div')
+  contentOuterShell.className = 'card w-100'
+
+  let contentTitle = document.createElement('h5')
+  contentTitle.className = 'card-header'
+  contentTitle.innerText = recipe.name
+  contentOuterShell.appendChild(contentTitle)
+
+  let contentBody = document.createElement('div')
+  contentBody.className = 'card-body'
+
+  let recipeInfo = document.createElement('h6')
+  recipeInfo.className = 'card-title'
+  recipeInfo.innerText = `Prep Time: ${recipe.preptime} minutes | Cook Time: ${recipe.cooktime} minutes | Servings: ${recipe.servings}`
+  contentBody.appendChild(recipeInfo)
+
+  let ingredientsGroup = document.createElement('ul')
+  ingredientsGroup.className = 'list-group list-group-flush d-flex flex-row flex-wrap border-bottom'
+  recipe.ingredients.forEach(ingredient => {
+    let ingredientRow = document.createElement('li')
+    ingredientRow.className = 'list-group-item w-50'
+    ingredientRow.innerText = `${ingredient.quantity} ${ingredient.unit} : ${ingredient.ingredient}`
+    ingredientsGroup.appendChild(ingredientRow)
+  })
+  contentBody.appendChild(ingredientsGroup)
+
+  let directionsGroup = document.createElement('ul')
+  directionsGroup.className = 'list-group mt-3 border'
+  recipe.directions.forEach(direction => {
+    let directionRow = document.createElement('li')
+    directionRow.className = 'list-group-item border-0'
+    directionRow.innerText = `${direction.step_number}. ${direction.direction}`
+    directionsGroup.appendChild(directionRow)
+  })
+  contentBody.appendChild(directionsGroup)
+
+  let backButton = document.createElement('button')
+  backButton.className = 'btn btn-primary mt-3'
+  backButton.setAttribute('category',`${recipe.category}`)
+  backButton.addEventListener('click',displayCards)
+  backButton.innerText = "Back"
+  contentBody.appendChild(backButton)
+
+  contentOuterShell.appendChild(contentBody)
+  return contentOuterShell
+}
+
 function displayCards(event){
   removeCurrentDisplay()
   const selectedCategory = event.target.attributes['category'].value
@@ -93,7 +141,10 @@ function displayCards(event){
 }
 
 function displayRecipe(event){
-  // add logic to display recipe info here
+  removeCurrentDisplay()
+  const selectedRecipeId = event.target.attributes['id'].value
+  const selectedRecipe = recipes.find(recipe => recipe.recipe_id == selectedRecipeId)
+  tabContent.appendChild(createRecipeDisplay(selectedRecipe))
 }
 
 function removeCurrentDisplay(){
