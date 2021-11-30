@@ -7,18 +7,17 @@ const navBar = document.querySelector('#nav-tab')
 const tabContent = document.querySelector('#nav-tabcontent')
 
 document.addEventListener("DOMContentLoaded",() => {
-  fetchRecipes()
-  fetchAndCreateCategories()
-  // display recipe details for clicked on recipe
+  fetchRecipesAndCreateCategories() //encapsulated in one method to ensure that category tabs don't appear until all recipes are fetched
 })
 
-function fetchRecipes(){
+function fetchRecipesAndCreateCategories(){
   fetch(recipeIndexUrl)
   .then(response => response.json())
   .then(json => {
     json.data.forEach(recipe => {
       recipes.push(new Recipe(recipe))
     })
+    fetchAndCreateCategories()
   })
 }
 
