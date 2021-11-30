@@ -16,7 +16,27 @@
         <div class="col"></div>
         <!-- ADD CREATE CATEGORY BACK IF WANT TO IMPLEMENT AND REMOVE THE DIV ABOVE -->
         <!-- <button class="btn btn-secondary h-50 w-25 mr-2 mt-2" id="create-cat-btn">Create Category</button> -->
-        <button class="btn btn-primary h-50 w-25 mt-2" id="add-rec-btn">Add Recipe</button>
+        <button class="btn btn-primary h-50 w-25 mt-2" id="add-rec-btn" data-toggle="modal" data-target="#addRecipeModal">Add Recipe</button>
+        <!-- Button trigger modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="addRecipeModal" tabindex="-1" role="dialog" aria-labelledby="addRecipeModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Recipe</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ADD FORM HERE
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Add Recipe</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <nav class="sticky-top bg-white">
