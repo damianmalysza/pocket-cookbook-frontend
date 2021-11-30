@@ -21,9 +21,9 @@ function fetchRecipesAndCreateCategories(){
   })
 }
 
-function refreshRecipes() {
+async function refreshRecipes() {
   recipes.splice(0,recipes.length)
-  fetch(recipeIndexUrl)
+  await fetch(recipeIndexUrl)
   .then(response => response.json())
   .then(json => {
     json.data.forEach(recipe => {
@@ -192,7 +192,6 @@ async function fetchRecipeDirections(recipe){
 
 function displayCards(selectedCategory){
   removeCurrentDisplay()
-
   const filteredRecipes = recipes.filter(recipe => recipe.category === selectedCategory)
 
   filteredRecipes.forEach(recipe => {
@@ -219,11 +218,10 @@ function editRecipe(recipe){
   debugger
 }
 
-function deleteRecipe(recipe){
+async function deleteRecipe(recipe){
   let category = recipe.category
   let deleteUrl = `http://localhost:3000/recipes/${recipe.recipe_id}`
-  fetch(deleteUrl,{method: 'delete'})
-  .then(() => {
-    location.reload()
-  })
+  await fetch(deleteUrl,{method: 'delete'})
+  await refreshRecipes()
+  displayCards(category)
 }
