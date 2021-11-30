@@ -82,9 +82,7 @@ function createRecipeCard(recipe) {
 }
 
 function displayCards(event){
-  while (tabContent.firstChild) {
-    tabContent.removeChild(tabContent.firstChild)
-  }
+  removeCurrentDisplay()
   const selectedCategory = event.target.attributes['category'].value
 
   const filteredRecipes = recipes.filter(recipe => recipe.category === selectedCategory)
@@ -96,4 +94,10 @@ function displayCards(event){
 
 function displayRecipe(event){
   // add logic to display recipe info here
+}
+
+function removeCurrentDisplay(){
+  while (tabContent.firstChild) {
+    tabContent.removeChild(tabContent.firstChild)
+  }
 }
