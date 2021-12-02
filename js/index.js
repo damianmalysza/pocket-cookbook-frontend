@@ -8,6 +8,7 @@ const tabContent = document.querySelector('#nav-tabcontent')
 
 document.addEventListener("DOMContentLoaded",() => {
   fetchRecipesAndCreateCategories() //encapsulated in one method to ensure that category tabs don't appear until all recipes are fetched
+  addEventListenersToRecipeForm() 
 })
 
 function fetchRecipesAndCreateCategories(){
@@ -56,6 +57,7 @@ function fetchAndCreateCategories(){
   .then(json => {
     json.forEach(category => categories.push(category))
     createCategoryTabs(categories)
+    addCategoryFormHandler()
   })
 }
 
@@ -224,4 +226,41 @@ async function deleteRecipe(recipe){
   await fetch(deleteUrl,{method: 'delete'})
   await refreshRecipes()
   displayCards(category)
+}
+
+//functions to deal with Add Recipe function
+function addEventListenersToRecipeForm(){
+  addIngredientHandler()
+  addDirectionHandler()
+  submitRecipeHandler()
+}
+
+function addCategoryFormHandler(){
+  const categorySelect = document.querySelector('#categorySelect')
+  categories.forEach(category => {
+    let option = document.createElement('option')
+    option.value = category
+    option.innerText = category
+    categorySelect.appendChild(option)
+  })
+}
+
+function addIngredientHandler(){
+
+}
+
+function addDirectionHandler(){
+
+}
+
+function submitRecipeHandler(){
+  
+}
+
+function prepareRecipeFormData(){
+  debugger
+}
+
+function submitRecipe(recipeData){
+
 }
