@@ -256,6 +256,10 @@ function addIngredientFormRow(){
   let addIngredientButtonContainer = event.target.parentNode
   let previousIngredientRow = event.target.parentNode.parentNode
   let nextIngredientRow = previousIngredientRow.cloneNode(true)
+  let nextIngredientInputs = nextIngredientRow.querySelectorAll('input')
+  for (let i = 0; i < nextIngredientInputs.length; i++){
+    nextIngredientInputs[i].value = ""
+  }
   ingredientAddContainer.appendChild(nextIngredientRow)
   previousIngredientRow.removeChild(addIngredientButtonContainer)
   
@@ -277,6 +281,7 @@ function addDirectionFormRow(){
   let previousDirectionRow = event.target.parentNode.parentNode
 
   let nextDirectionRow = previousDirectionRow.cloneNode(true)
+  nextDirectionRow.querySelector('textarea').value = ""
   let nextDirectionRowAddButton = nextDirectionRow.querySelector('#add-direction-button')
   nextDirectionRowAddButton.addEventListener('click',addDirectionFormRow)
  
@@ -288,10 +293,11 @@ function addDirectionFormRow(){
 }
 
 function submitRecipeHandler(){
-  
+  const submitRecipeButton = document.querySelector('#submit-recipe-button')
+  submitRecipeButton.addEventListener('click',submitNewRecipe)
 }
 
-function prepareRecipeFormData(){
+function submitNewRecipe(){
   debugger
 }
 
