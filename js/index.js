@@ -275,24 +275,16 @@ function addDirectionFormRow(){
   let directionAddContainer = document.querySelector('#add-direction-section')
   let addDirectionButtonContainer = event.target.parentNode
   let previousDirectionRow = event.target.parentNode.parentNode
-  let previousDirectionLabel = previousDirectionRow.querySelector('.add-direction-label')
-  let previousStepCount = parseInt(previousDirectionLabel.attributes.value.value)
-  let nextStepCount = (previousStepCount + 1).toString()
 
   let nextDirectionRow = previousDirectionRow.cloneNode(true)
   let nextDirectionRowAddButton = nextDirectionRow.querySelector('#add-direction-button')
   nextDirectionRowAddButton.addEventListener('click',addDirectionFormRow)
-  let nextDirectionLabel = nextDirectionRow.querySelector('.add-direction-label')
-  nextDirectionLabel.setAttribute('for','directionAdd-' + nextStepCount)
-  nextDirectionLabel.setAttribute('value', nextStepCount)
-  nextDirectionLabel.innerText = nextStepCount
-  let nextDirectionTextInput = nextDirectionRow.querySelector('.add-direction-text')
-  nextDirectionTextInput.id = 'directionAdd-' + nextStepCount
+ 
   directionAddContainer.appendChild(nextDirectionRow)
-
 
   previousDirectionRow.removeChild(addDirectionButtonContainer)
   previousDirectionRow.appendChild(createRemoveButton(removeDirectionRow))
+  refreshDirectionRowValues()
 }
 
 function submitRecipeHandler(){
@@ -325,5 +317,31 @@ function removeIngredientRow(){
 }
 
 function removeDirectionRow(){
-  debugger
+  event.target.parentNode.parentNode.remove()
+  refreshDirectionRowValues()
+}
+
+function refreshDirectionRowValues(){
+  let directionAddContainer = document.querySelector('#add-direction-section')
+  let directionRow = document.getElementsByClassName('direction-row')
+  for (let i = 0; i < directionRow.length; i++){
+    let currentRow = directionRow[i]
+    let currentStepNumber = (i + 1).toString()
+    let currentRowLabel = currentRow.querySelector('.add-direction-label')
+    let currentRowTextInput = currentRow.querySelector('.add-direction-text')
+    
+    currentRowLabel.setAttribute('for',`directionAdd-${currentStepNumber}`)
+    currentRowLabel.setAttribute('value', currentStepNumber)
+    currentRowLabel.innerText = currentStepNumber
+
+    currentRowTextInput.setAttribute('value',`step-${currentStepNumber}`)
+    currentRowTextInput.id = `directionAdd-${currentStepNumber}`
+  }
+
+  // let nextDirectionLabel = nextDirectionRow.querySelector('.add-direction-label')
+  // nextDirectionLabel.setAttribute('for','directionAdd-' + nextStepCount)
+  // nextDirectionLabel.setAttribute('value', nextStepCount)
+  // nextDirectionLabel.innerText = nextStepCount
+  // let nextDirectionTextInput = nextDirectionRow.querySelector('.add-direction-text')
+  // nextDirectionTextInput.id = 'directionAdd-' + nextStepCount
 }
