@@ -155,12 +155,13 @@ function createRecipeDisplay(recipe) {
   delButton.addEventListener('click',deleteRecipe.bind(event,recipe))
   delButton.innerText = "Delete Recipe"
   btnGroup.appendChild(delButton)
-
-  let editButton = document.createElement('button')
-  editButton.className = 'btn btn-secondary'
-  editButton.addEventListener('click',editRecipe.bind(event,recipe))
-  editButton.innerText = "Edit Recipe"
-  btnGroup.appendChild(editButton)
+  
+  // comment back once ready to implement edit functionality
+  // let editButton = document.createElement('button')
+  // editButton.className = 'btn btn-secondary'
+  // editButton.addEventListener('click',editRecipe.bind(event,recipe))
+  // editButton.innerText = "Edit Recipe"
+  // btnGroup.appendChild(editButton)
 
   buttonRow.appendChild(backButton)
   for (let i=0;i<5;i++){
