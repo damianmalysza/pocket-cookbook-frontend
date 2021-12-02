@@ -246,7 +246,36 @@ function addCategoryFormHandler(){
 }
 
 function addIngredientHandler(){
+  const addIngredientButton = document.querySelector('#add-ingredient-button')
+  addIngredientButton.addEventListener('click', addIngredientFormRow)
+}
 
+function addIngredientFormRow(){
+  let ingredientAddContainer = document.querySelector('#add-ingredient-section')
+  let addIngredientButtonContainer = event.target.parentNode
+  let previousIngredientRow = event.target.parentNode.parentNode
+  let nextIngredientRow = previousIngredientRow.cloneNode(true)
+  ingredientAddContainer.appendChild(nextIngredientRow)
+  previousIngredientRow.removeChild(addIngredientButtonContainer)
+  let removeButtonContainer = document.createElement('div')
+  removeButtonContainer.className = 'input-group-append'
+  removeButtonContainer.id = 'remove-ingredient-container'
+
+  let removeButton = document.createElement('button')
+  removeButton.className = 'btn btn-outline-danger remove-ingredient-button'
+  removeButton.type = 'button'
+  removeButton.innerText = '-'
+  removeButton.addEventListener('click', removeIngredientRow)
+
+  removeButtonContainer.appendChild(removeButton)
+
+  previousIngredientRow.appendChild(removeButtonContainer)
+
+  addIngredientHandler()
+}
+
+function removeIngredientRow(){
+  event.target.parentNode.parentNode.remove()
 }
 
 function addDirectionHandler(){

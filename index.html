@@ -52,13 +52,15 @@
                     <option selected>Choose...</option>
                   </select>
                 </div>
-                <h6 class="text-left">Add Ingredients</h6>
-                <div class="input-group mb-3 form-row">
-                  <input type="text" class="form-control w-25 form-ingredient-name" placeholder="Name">
-                  <input type="text" class="form-control form-ingredient-quantity" placeholder="Quantity">
-                  <input type="text" class="form-control form-ingredient-unit" placeholder="Unit">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="add-ingredient-button">+</button>
+                <div id='add-ingredient-section'>
+                  <h6 class="text-left">Add Ingredients</h6>
+                  <div class="input-group mb-3 form-row ingredient-row">
+                    <input type="text" class="form-control w-25 form-ingredient-name" placeholder="Name">
+                    <input type="text" class="form-control form-ingredient-quantity" placeholder="Quantity">
+                    <input type="text" class="form-control form-ingredient-unit" placeholder="Unit">
+                    <div class="input-group-append" id="add-ingredient-container">
+                      <button class="btn btn-outline-secondary" type="button" id="add-ingredient-button">+</button>
+                    </div>
                   </div>
                 </div>
                 <h6 class="text-left">Add Directions</h6>
