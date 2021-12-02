@@ -258,29 +258,41 @@ function addIngredientFormRow(){
   let nextIngredientRow = previousIngredientRow.cloneNode(true)
   ingredientAddContainer.appendChild(nextIngredientRow)
   previousIngredientRow.removeChild(addIngredientButtonContainer)
-  let removeButtonContainer = document.createElement('div')
-  removeButtonContainer.className = 'input-group-append'
-  removeButtonContainer.id = 'remove-ingredient-container'
-
-  let removeButton = document.createElement('button')
-  removeButton.className = 'btn btn-outline-danger remove-ingredient-button'
-  removeButton.type = 'button'
-  removeButton.innerText = '-'
-  removeButton.addEventListener('click', removeIngredientRow)
-
-  removeButtonContainer.appendChild(removeButton)
-
-  previousIngredientRow.appendChild(removeButtonContainer)
+  
+  previousIngredientRow.appendChild(createRemoveButton(removeIngredientRow))
 
   addIngredientHandler()
 }
 
-function removeIngredientRow(){
-  event.target.parentNode.parentNode.remove()
-}
+
 
 function addDirectionHandler(){
+  const addDirectionButton = document.querySelector('#add-direction-button')
+  addDirectionButton.addEventListener('click',addDirectionFormRow)
+}
 
+function addDirectionFormRow(){
+  let directionAddContainer = document.querySelector('#add-direction-section')
+  let addDirectionButtonContainer = event.target.parentNode
+  let previousDirectionRow = event.target.parentNode.parentNode
+  let previousDirectionLabel = previousDirectionRow.querySelector('.add-direction-label')
+  let previousStepCount = parseInt(previousDirectionLabel.attributes.value.value)
+  let nextStepCount = (previousStepCount + 1).toString()
+
+  let nextDirectionRow = previousDirectionRow.cloneNode(true)
+  let nextDirectionRowAddButton = nextDirectionRow.querySelector('#add-direction-button')
+  nextDirectionRowAddButton.addEventListener('click',addDirectionFormRow)
+  let nextDirectionLabel = nextDirectionRow.querySelector('.add-direction-label')
+  nextDirectionLabel.setAttribute('for','directionAdd-' + nextStepCount)
+  nextDirectionLabel.setAttribute('value', nextStepCount)
+  nextDirectionLabel.innerText = nextStepCount
+  let nextDirectionTextInput = nextDirectionRow.querySelector('.add-direction-text')
+  nextDirectionTextInput.id = 'directionAdd-' + nextStepCount
+  directionAddContainer.appendChild(nextDirectionRow)
+
+
+  previousDirectionRow.removeChild(addDirectionButtonContainer)
+  previousDirectionRow.appendChild(createRemoveButton(removeDirectionRow))
 }
 
 function submitRecipeHandler(){
@@ -293,4 +305,25 @@ function prepareRecipeFormData(){
 
 function submitRecipe(recipeData){
 
+}
+
+function createRemoveButton(callbackForButton) {
+  let removeButtonContainer = document.createElement('div')
+  removeButtonContainer.className = 'input-group-append'
+
+  let removeButton = document.createElement('button')
+  removeButton.className = 'btn btn-outline-danger'
+  removeButton.type = 'button'
+  removeButton.innerText = '-'
+  removeButton.addEventListener('click', callbackForButton) 
+  removeButtonContainer.appendChild(removeButton)
+  return removeButtonContainer
+}
+
+function removeIngredientRow(){
+  event.target.parentNode.parentNode.remove()
+}
+
+function removeDirectionRow(){
+  debugger
 }
