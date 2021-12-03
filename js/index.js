@@ -380,7 +380,15 @@ function postRecipe(recipeData){
       errorContainer.appendChild(generateErrorMessage(json.errors[0]))
     }
   })
+  .catch(err => {
+    debugger
+    let errorContainer = document.querySelector('#error-placeholder')
+    clearFormErrors()
+    errorContainer.appendChild(generateErrorMessage(err))
+  })
 }
+
+
 
 async function successfulRecipeAdd(recipeData){
     await refreshRecipes()
