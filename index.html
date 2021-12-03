@@ -21,64 +21,66 @@
         <!-- Modal -->
         <div class="modal fade" id="addRecipeModal" tabindex="-1" role="dialog" aria-labelledby="addRecipeModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Recipe</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body add-recipe-form">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="Recipe Name" id="form-recipe-name">
+            <form>
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Recipe</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                 </div>
-                <div class="form-row">
-                  <div class="input-group mb-3 col-9">
-                    <input type="text" class="form-control" placeholder="Prep Time" id="form-prep-time">
-                    <input type="text" class="form-control" placeholder="Cook Time" id="form-cook-time">
-                    <div class="input-group-append">
-                      <span class="input-group-text">in minutes</span>
+                <div class="modal-body add-recipe-form">
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Recipe Name" id="form-recipe-name">
+                  </div>
+                  <div class="form-row">
+                    <div class="input-group mb-3 col-9">
+                      <input type="text" class="form-control" placeholder="Prep Time" id="form-prep-time">
+                      <input type="text" class="form-control" placeholder="Cook Time" id="form-cook-time">
+                      <div class="input-group-append">
+                        <span class="input-group-text">in minutes</span>
+                      </div>
+                    </div>
+                    <div class="input-group mb-3 col">
+                      <input type="text" class="form-control" placeholder="Servings" id="form-servings">
                     </div>
                   </div>
-                  <div class="input-group mb-3 col">
-                    <input type="text" class="form-control" placeholder="Servings" id="form-servings">
-                  </div>
-                </div>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text" for="categorySelect">Category</label>
-                  </div>
-                  <select class="custom-select" id="categorySelect">
-                  </select>
-                </div>
-                <div id='add-ingredient-section'>
-                  <h6 class="text-left">Add Ingredients</h6>
-                  <div class="input-group mb-3 form-row ingredient-row">
-                    <input type="text" class="form-control w-25 form-ingredient-name" placeholder="Name">
-                    <input type="text" class="form-control form-ingredient-quantity" placeholder="Quantity">
-                    <input type="text" class="form-control form-ingredient-unit" placeholder="Unit">
-                    <div class="input-group-append" id="add-ingredient-container">
-                      <button class="btn btn-outline-secondary" type="button" id="add-ingredient-button">+</button>
-                    </div>
-                  </div>
-                </div>
-                <div id="add-direction-section">
-                  <h6 class="text-left">Add Directions</h6>
-                  <div class="input-group mb-3 flex-row direction-row">
+                  <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <label class="input-group-text add-direction-label" for="directionAdd-1" value="1">1</label> 
+                      <label class="input-group-text" for="categorySelect">Category</label>
                     </div>
-                    <textarea id="directionAdd-1" class="form-control add-direction-text" row="2" value='step-1'></textarea>
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="button" id="add-direction-button">+</button>
+                    <select class="custom-select" id="categorySelect">
+                    </select>
+                  </div>
+                  <div id='add-ingredient-section'>
+                    <h6 class="text-left">Add Ingredients</h6>
+                    <div class="input-group mb-3 form-row ingredient-row">
+                      <input type="text" class="form-control w-25 form-ingredient-name" placeholder="Name">
+                      <input type="text" class="form-control form-ingredient-quantity" placeholder="Quantity">
+                      <input type="text" class="form-control form-ingredient-unit" placeholder="Unit">
+                      <div class="input-group-append" id="add-ingredient-container">
+                        <button class="btn btn-outline-secondary" type="button" id="add-ingredient-button">+</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="add-direction-section">
+                    <h6 class="text-left">Add Directions</h6>
+                    <div class="input-group mb-3 flex-row direction-row">
+                      <div class="input-group-prepend">
+                        <label class="input-group-text add-direction-label" for="directionAdd-1" value="1">1</label> 
+                      </div>
+                      <textarea id="directionAdd-1" class="form-control add-direction-text" row="2" value='step-1'></textarea>
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="add-direction-button">+</button>
+                      </div>
                     </div>
                   </div>
                 </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" id="submit-recipe-button">Add Recipe</button>
+                </div>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="submit-recipe-button">Add Recipe</button>
-              </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
