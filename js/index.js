@@ -333,12 +333,10 @@ function prepareRecipeData(){
     let ingredient = currentIngredient.querySelector('.form-ingredient-name').value 
     let unit = currentIngredient.querySelector('.form-ingredient-unit').value 
     let quantity = currentIngredient.querySelector('.form-ingredient-quantity').value 
-    if (ingredient && unit && quantity) {
-      ingredientData['ingredient'] = ingredient
-      ingredientData['unit'] = unit
-      ingredientData['quantity'] = quantity
-      recipeData['ingredients'].push(ingredientData)
-    }
+    ingredientData['ingredient'] = ingredient
+    ingredientData['unit'] = unit
+    ingredientData['quantity'] = quantity
+    recipeData['ingredients'].push(ingredientData)
   }
 
   let submittedDirections = formContainer.querySelectorAll('.direction-row')
@@ -381,7 +379,6 @@ function postRecipe(recipeData){
     }
   })
   .catch(err => {
-    debugger
     let errorContainer = document.querySelector('#error-placeholder')
     clearFormErrors()
     errorContainer.appendChild(generateErrorMessage(err))
