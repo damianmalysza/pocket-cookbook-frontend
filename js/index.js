@@ -5,6 +5,7 @@ const recipes = []
 const categories = []
 const navBar = document.querySelector('#nav-tab')
 const tabContent = document.querySelector('#nav-tabcontent')
+const formModal = document.querySelector('#addRecipeModal')
 
 document.addEventListener("DOMContentLoaded",() => {
   fetchRecipesAndCreateCategories() //encapsulated in one method to ensure that category tabs don't appear until all recipes are fetched
@@ -195,11 +196,22 @@ async function fetchRecipeDirections(recipe){
 
 function displayCards(selectedCategory){
   removeCurrentDisplay()
+  
+  selectTab(selectedCategory)
   const filteredRecipes = recipes.filter(recipe => recipe.category === selectedCategory)
 
   filteredRecipes.forEach(recipe => {
     tabContent.appendChild(createRecipeCard(recipe))
   })
+}
+
+function selectTab(category){
+  let tabs = document.querySelectorAll('.nav-item')
+  for (let i = 0; i < tabs.length; i++) {
+    tabs[i].className = 'nav-item nav-link'
+  }
+  let selectedTab = document.querySelector(`a[category=${category}]`)
+  selectedTab.className = 'nav-item nav-link active'
 }
 
 async function displayRecipe(event){
@@ -305,8 +317,9 @@ function prepareRecipeData(){
   let recipeData = {}
   let formContainer = event.target.parentElement.parentElement
   recipeData['name'] = formContainer.querySelector('#form-recipe-name').value
+  
   recipeData['preptime'] = formContainer.querySelector('#form-prep-time').value
-  recipeData['cooktime'] = formContainer.querySelector('#form-recipe-name').value
+  recipeData['cooktime'] = formContainer.querySelector('#form-cook-time').value
   recipeData['servings'] = formContainer.querySelector('#form-servings').value
   recipeData['category'] = formContainer.querySelector('#categorySelect').value
 
@@ -346,6 +359,7 @@ function prepareRecipeData(){
 }
 
 function postRecipe(recipeData){
+  
   const configurationObject = {
     method: 'POST',
     headers: {
@@ -359,16 +373,40 @@ function postRecipe(recipeData){
   .then(response => response.json())
   .then(json => {
     if (json.data){
-
+      successfulRecipeAdd(json.data)
     } else if (json.errors) {
       let errorContainer = document.querySelector('#error-placeholder')
-      while (errorContainer.firstChild) {
-        errorContainer.removeChild(errorContainer.firstChild)
-      } 
+      clearFormErrors()
       errorContainer.appendChild(generateErrorMessage(json.errors[0]))
     }
   })
 }
+
+async function successfulRecipeAdd(recipeData){
+    await refreshRecipes()
+    let category = recipeData.attributes.category
+    clearFormErrors()
+    removeFormModal()
+    selectTab(category)
+    displayCards(category)
+    refreshFormModal()
+}
+
+function removeFormModal(){
+  formModal.style.display = 'none'
+  formModal.className = 'modal fade'
+  document.body.className = ''
+  document.querySelector('.modal-backdrop').remove()
+}
+
+function refreshFormModal(){
+  // this should be triggered on browser refresh
+  let inputs = document.querySelectorAll('input')
+  for (let i = 0; i < inputs.length; i++){
+    inputs[i].value = ""
+  }
+}
+
 
 function createRemoveButton(callbackForButton) {
   let removeButtonContainer = document.createElement('div')
@@ -416,4 +454,11 @@ function generateErrorMessage(content){
   div.setAttribute('role','alert')
   div.innerText = content
   return div
+}
+
+function clearFormErrors(){
+  let errorContainer = document.querySelector('#error-placeholder')
+  while (errorContainer.firstChild) {
+    errorContainer.removeChild(errorContainer.firstChild)
+  }  
 }
