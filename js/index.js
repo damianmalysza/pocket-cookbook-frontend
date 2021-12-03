@@ -298,8 +298,7 @@ function submitRecipeHandler(){
 }
 
 function submitNewRecipe(){
-  debugger
-  prepareRecipeData(event)
+  postRecipe(prepareRecipeData(event))
 }
 
 function prepareRecipeData(){
@@ -346,8 +345,21 @@ function prepareRecipeData(){
 
 }
 
-function submitRecipe(recipeData){
+function postRecipe(recipeData){
+  const configurationObject = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(recipeData)
+  }
 
+  fetch(recipeIndexUrl,configurationObject)
+  .then(response => response.json())
+  .then(json => {
+    debugger
+  })
 }
 
 function createRemoveButton(callbackForButton) {
