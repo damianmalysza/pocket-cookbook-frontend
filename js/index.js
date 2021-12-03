@@ -358,7 +358,15 @@ function postRecipe(recipeData){
   fetch(recipeIndexUrl,configurationObject)
   .then(response => response.json())
   .then(json => {
-    debugger
+    if (json.data){
+
+    } else if (json.errors) {
+      let errorContainer = document.querySelector('#error-placeholder')
+      while (errorContainer.firstChild) {
+        errorContainer.removeChild(errorContainer.firstChild)
+      } 
+      errorContainer.appendChild(generateErrorMessage(json.errors[0]))
+    }
   })
 }
 
@@ -400,4 +408,12 @@ function refreshDirectionRowValues(){
     currentRowTextInput.setAttribute('value',`step-${currentStepNumber}`)
     currentRowTextInput.id = `directionAdd-${currentStepNumber}`
   }
+}
+
+function generateErrorMessage(content){
+  let div = document.createElement('div')
+  div.className = 'alert alert-danger form-error'
+  div.setAttribute('role','alert')
+  div.innerText = content
+  return div
 }
