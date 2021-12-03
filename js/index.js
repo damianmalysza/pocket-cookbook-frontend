@@ -400,11 +400,4 @@ function refreshDirectionRowValues(){
     currentRowTextInput.setAttribute('value',`step-${currentStepNumber}`)
     currentRowTextInput.id = `directionAdd-${currentStepNumber}`
   }
-
-  // let nextDirectionLabel = nextDirectionRow.querySelector('.add-direction-label')
-  // nextDirectionLabel.setAttribute('for','directionAdd-' + nextStepCount)
-  // nextDirectionLabel.setAttribute('value', nextStepCount)
-  // nextDirectionLabel.innerText = nextStepCount
-  // let nextDirectionTextInput = nextDirectionRow.querySelector('.add-direction-text')
-  // nextDirectionTextInput.id = 'directionAdd-' + nextStepCount
 }
