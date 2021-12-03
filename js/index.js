@@ -299,6 +299,51 @@ function submitRecipeHandler(){
 
 function submitNewRecipe(){
   debugger
+  prepareRecipeData(event)
+}
+
+function prepareRecipeData(){
+  let recipeData = {}
+  let formContainer = event.target.parentElement.parentElement
+  recipeData['name'] = formContainer.querySelector('#form-recipe-name').value
+  recipeData['preptime'] = formContainer.querySelector('#form-prep-time').value
+  recipeData['cooktime'] = formContainer.querySelector('#form-recipe-name').value
+  recipeData['servings'] = formContainer.querySelector('#form-servings').value
+  recipeData['category'] = formContainer.querySelector('#categorySelect').value
+
+  recipeData['ingredients'] = []
+  recipeData['directions'] = []
+
+  let submittedIngredients = formContainer.querySelectorAll('.ingredient-row')
+  for (let i = 0; i < submittedIngredients.length; i++) {
+    let currentIngredient = submittedIngredients[i]
+    let ingredientData = {}
+    let ingredient = currentIngredient.querySelector('.form-ingredient-name').value 
+    let unit = currentIngredient.querySelector('.form-ingredient-unit').value 
+    let quantity = currentIngredient.querySelector('.form-ingredient-quantity').value 
+    if (ingredient && unit && quantity) {
+      ingredientData['ingredient'] = ingredient
+      ingredientData['unit'] = unit
+      ingredientData['quantity'] = quantity
+      recipeData['ingredients'].push(ingredientData)
+    }
+  }
+
+  let submittedDirections = formContainer.querySelectorAll('.direction-row')
+  for (let i = 0; i < submittedDirections.length; i++) {
+    let currentDirection = submittedDirections[i]
+    let directionData = {}
+    let stepNumber = parseInt(currentDirection.querySelector('label').attributes['value'].value)
+    let direction = currentDirection.querySelector('.add-direction-text').value
+    if (direction){
+      directionData['step_number'] = stepNumber
+      directionData['direction'] = direction
+      recipeData['directions'].push(directionData)
+    }
+  }
+  
+  return recipeData
+
 }
 
 function submitRecipe(recipeData){
