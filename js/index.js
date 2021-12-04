@@ -345,11 +345,9 @@ function prepareRecipeData(){
     let directionData = {}
     let stepNumber = parseInt(currentDirection.querySelector('label').attributes['value'].value)
     let direction = currentDirection.querySelector('.add-direction-text').value
-    if (direction){
-      directionData['step_number'] = stepNumber
-      directionData['direction'] = direction
-      recipeData['directions'].push(directionData)
-    }
+    directionData['step_number'] = stepNumber
+    directionData['direction'] = direction
+    recipeData['directions'].push(directionData)
   }
   
   return recipeData
