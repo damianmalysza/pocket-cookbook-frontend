@@ -404,7 +404,6 @@ function removeFormModal(){
 }
 
 function refreshFormModal(){
-  // this should be triggered on browser refresh
   let inputs = document.querySelectorAll('input')
   for (let i = 0; i < inputs.length; i++){
     inputs[i].value = ""
