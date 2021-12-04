@@ -10,6 +10,7 @@ const formModal = document.querySelector('#addRecipeModal')
 document.addEventListener("DOMContentLoaded",() => {
   fetchRecipesAndCreateCategories() //encapsulated in one method to ensure that category tabs don't appear until all recipes are fetched
   addEventListenersToRecipeForm() 
+  refreshFormModal()
 })
 
 function fetchRecipesAndCreateCategories(){
@@ -407,6 +408,10 @@ function refreshFormModal(){
   let inputs = document.querySelectorAll('input')
   for (let i = 0; i < inputs.length; i++){
     inputs[i].value = ""
+  }
+  let directionInputs = document.querySelectorAll('textarea')
+  for (let i = 0; i < directionInputs.length; i++){
+    directionInputs[i].value = ""
   }
 }
 
